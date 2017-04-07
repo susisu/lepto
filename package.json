@@ -9,7 +9,7 @@
     "build": "cross-env BABEL_ENV=production babel src -d lib",
     "doc": "esdoc",
     "clean": "rimraf lib doc",
-    "prepublish": "run-s clean build doc"
+    "prepublish": "run-s lint test clean build doc"
   },
   "repository": {
     "type": "git",
