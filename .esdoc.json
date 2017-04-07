@@ -1,5 +1,6 @@
 {
   "source": "./src",
   "excludes": ["\\.test\\.js$"],
-  "destination": "./doc"
+  "destination": "./doc",
+  "lint": false
 }
