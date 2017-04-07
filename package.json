@@ -2,9 +2,14 @@
   "name": "lepto",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/lepto.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src --fix",
+    "test": "nyc --reporter=html --reporter=text ava src/*.test.js --timeout=3000",
+    "build": "cross-env BABEL_ENV=production babel src -d lib",
+    "doc": "esdoc",
+    "clean": "rimraf lib doc",
+    "prepublish": "run-s clean build doc"
   },
   "repository": {
     "type": "git",
@@ -15,5 +20,35 @@
   "bugs": {
     "url": "https://github.com/susisu/lepto/issues"
   },
-  "homepage": "https://github.com/susisu/lepto#readme"
+  "homepage": "https://github.com/susisu/lepto#readme",
+  "devDependencies": {
+    "ava": "^0.19.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-preset-es2015-node": "^6.1.1",
+    "cross-env": "^4.0.0",
+    "esdoc": "^0.5.2",
+    "eslint": "^3.19.0",
+    "npm-run-all": "^4.0.2",
+    "nyc": "^10.2.0",
+    "rimraf": "^2.6.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015-node"
+    ],
+    "ignore": [
+      "src/*.test.js"
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ]
+  }
 }
