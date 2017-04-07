@@ -1,12 +1,15 @@
+# temporary
+/temp/
+
 # config
 .gitignore
 .eslintrc.json
 .esdoc.json
 
 # source
-src
+/src/
 
 # auto-generated files
-.nyc_output
-coverage
-doc
+/.nyc_output/
+/coverage/
+/doc/
