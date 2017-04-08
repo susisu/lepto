@@ -5,7 +5,7 @@
   "main": "lib/lepto.js",
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "nyc --reporter=html --reporter=text ava src/*.test.js --timeout=3000",
+    "test": "nyc --reporter=html --reporter=text ava src/*.test.js",
     "build": "cross-env BABEL_ENV=production babel src -d lib",
     "doc": "esdoc",
     "clean": "rimraf lib doc",
