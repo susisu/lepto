@@ -2,5 +2,10 @@
   "source": "./src",
   "excludes": ["\\.test\\.js$"],
   "destination": "./doc",
-  "lint": false
+  "lint": false,
+  "test": {
+    "type": "mocha",
+    "source": "./src",
+    "includes": ["\\.test\\.js$"]
+  }
 }
