@@ -6,13 +6,14 @@
   "module": "lib/lepto.es.js",
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "cross-env BABEL_ENV=test nyc -r html -r text ava src/*.test.js",
+    "test": "cross-env BABEL_ENV=test mocha --compilers js:babel-core/register src/*.test.js",
+    "cover": "nyc -r html -r text npm test",
     "build:cjs": "rollup src/lepto.js -f cjs -o lib/lepto.cjs.js",
     "build:es": "rollup src/lepto.js -f es -o lib/lepto.es.js",
     "build": "run-p build:*",
     "doc": "esdoc",
     "clean": "rimraf lib doc",
-    "prepublishOnly": "run-s lint test clean build doc"
+    "prepublishOnly": "run-s lint cover clean build doc"
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,14 @@
   },
   "homepage": "https://github.com/susisu/lepto#readme",
   "devDependencies": {
-    "ava": "^0.19.0",
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "chai": "^3.5.0",
     "cross-env": "^4.0.0",
     "esdoc": "^0.5.2",
     "eslint": "^3.19.0",
+    "mocha": "^3.2.0",
     "npm-run-all": "^4.0.2",
     "nyc": "^10.2.0",
     "rimraf": "^2.6.1",
@@ -43,16 +45,8 @@
         "plugins": [
           "transform-es2015-modules-commonjs"
         ],
-        "ignore": [
-          "src/*.test.js"
-        ],
         "sourceMaps": "inline"
       }
     }
-  },
-  "ava": {
-    "require": [
-      "babel-core/register"
-    ]
   }
 }
