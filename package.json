@@ -2,11 +2,14 @@
   "name": "lepto",
   "version": "0.0.0",
   "description": "",
-  "main": "lib/lepto.js",
+  "main": "lib/lepto.cjs.js",
+  "module": "lib/lepto.es.js",
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "nyc --reporter=html --reporter=text ava src/*.test.js",
-    "build": "cross-env BABEL_ENV=production babel src -d lib",
+    "test": "cross-env BABEL_ENV=test nyc -r html -r text ava src/*.test.js",
+    "build:cjs": "rollup src/lepto.js -f cjs -o lib/lepto.cjs.js",
+    "build:es": "rollup src/lepto.js -f es -o lib/lepto.es.js",
+    "build": "run-p build:*",
     "doc": "esdoc",
     "clean": "rimraf lib doc",
     "prepublishOnly": "run-s lint test clean build doc"
@@ -31,17 +34,18 @@
     "eslint": "^3.19.0",
     "npm-run-all": "^4.0.2",
     "nyc": "^10.2.0",
-    "rimraf": "^2.6.1"
+    "rimraf": "^2.6.1",
+    "rollup": "^0.41.6"
   },
   "babel": {
-    "plugins": [
-      "transform-es2015-modules-commonjs"
-    ],
-    "ignore": [
-      "src/*.test.js"
-    ],
     "env": {
-      "development": {
+      "test": {
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ],
+        "ignore": [
+          "src/*.test.js"
+        ],
         "sourceMaps": "inline"
       }
     }
