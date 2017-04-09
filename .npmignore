@@ -4,10 +4,15 @@
 # config
 .gitignore
 .eslintrc.json
+.flowconfig
+.rollup.config.js
 .esdoc.json
 
 # source
 /src/
+
+# flow
+flow-typed/
 
 # auto-generated files
 /.nyc_output/

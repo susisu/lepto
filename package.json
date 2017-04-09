@@ -6,14 +6,15 @@
   "module": "lib/lepto.es.js",
   "scripts": {
     "lint": "eslint src --fix",
+    "flow": "flow check",
     "test": "cross-env BABEL_ENV=test mocha --compilers js:babel-core/register src/*.test.js",
     "cover": "nyc -r html -r text npm test",
-    "build:cjs": "rollup src/lepto.js -f cjs -o lib/lepto.cjs.js",
-    "build:es": "rollup src/lepto.js -f es -o lib/lepto.es.js",
+    "build:cjs": "rollup -c .rollup.config.js src/lepto.js -f cjs -o lib/lepto.cjs.js",
+    "build:es": "rollup -c .rollup.config.js src/lepto.js -f es -o lib/lepto.es.js",
     "build": "run-p build:*",
     "doc": "esdoc",
     "clean": "rimraf lib doc",
-    "prepublishOnly": "run-s lint cover clean build doc"
+    "prepublishOnly": "run-s lint flow cover clean build doc"
   },
   "repository": {
     "type": "git",
@@ -28,18 +29,27 @@
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-core": "^6.24.0",
+    "babel-eslint": "^7.2.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "chai": "^3.5.0",
     "cross-env": "^4.0.0",
     "esdoc": "^0.5.2",
+    "esdoc-flow-plugin": "^1.0.0",
     "eslint": "^3.19.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "flow-bin": "^0.43.1",
     "mocha": "^3.2.0",
     "npm-run-all": "^4.0.2",
     "nyc": "^10.2.0",
     "rimraf": "^2.6.1",
-    "rollup": "^0.41.6"
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1"
   },
   "babel": {
+    "plugins": [
+      "transform-flow-strip-types"
+    ],
     "env": {
       "test": {
         "plugins": [

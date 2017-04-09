@@ -5,6 +5,9 @@
 node_modules/
 npm-debug.log*
 
+# flow
+flow-typed/
+
 # auto-generated files
 /lib/
 /.nyc_output/

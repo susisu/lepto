@@ -7,5 +7,10 @@
     "type": "mocha",
     "source": "./src",
     "includes": ["\\.test\\.js$"]
-  }
+  },
+  "plugins": [
+    {
+      "name": "esdoc-flow-plugin"
+    }
+  ]
 }
