@@ -7,5 +7,18 @@
     "type": "mocha",
     "source": "./src",
     "includes": ["\\.test\\.js$"]
-  }
+  },
+  "plugins": [
+    {
+      "name": "esdoc-importpath-plugin",
+      "option": {
+        "replaces": [
+          {
+            "from": "^src/.*\\.js$",
+            "to": "lib/lepto.cjs.js"
+          }
+        ]
+      }
+    }
+  ]
 }
