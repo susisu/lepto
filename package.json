@@ -39,15 +39,5 @@
     "nyc": "^10.2.0",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.6"
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "plugins": [
-          "transform-es2015-modules-commonjs"
-        ],
-        "sourceMaps": "inline"
-      }
-    }
   }
 }
