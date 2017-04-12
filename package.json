@@ -8,9 +8,7 @@
     "lint": "eslint src --fix",
     "test": "cross-env BABEL_ENV=test mocha --compilers js:babel-core/register src/*.test.js",
     "cover": "nyc -r html -r text npm test",
-    "build:cjs": "rollup src/lepto.js -f cjs -o lib/lepto.cjs.js",
-    "build:es": "rollup src/lepto.js -f es -o lib/lepto.es.js",
-    "build": "run-p build:*",
+    "build": "rollup -c",
     "doc": "esdoc",
     "clean": "rimraf lib doc",
     "prepublishOnly": "run-s lint cover clean build doc"
